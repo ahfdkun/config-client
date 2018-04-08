@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 	@Value("${from}")
 	private String from;
+	
+	@Value("${name:undefined}")
+	private String name;
 
 	@Autowired
 	private Environment env;
@@ -19,7 +22,8 @@ public class TestController {
 	@RequestMapping("/from")
 	public String from() {
 		System.out.println(env.getProperty("from", "undefined"));
-		return this.from;
+		System.out.println(env.getProperty("name"));
+		return this.from + "--------->" + this.name;
 	}
 
 }
